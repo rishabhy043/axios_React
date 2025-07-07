@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Card } from "../Component/UI/Card"
 
 // import { PiCloudFogBold } from "react-icons/pi";npm install react-icons@latest
 
@@ -35,9 +36,9 @@ export const Movie = () => {
 
 
 export const Movie = () => {
-   const [Data, setData] = useState([]);
+    const [Data, setData] = useState([]);
 
-    const API = "https://www.omdbapi.com/?i=tt3896198&apikey=1c12799f&s=titanic&page=1";
+    const API = "https://www.omdbapi.com/?i=tt3896198&apiskey=1c12799f&s=titanic&page=1";
     //    const res = await axios.get(API);
     //    console.log(res);
 
@@ -46,9 +47,11 @@ export const Movie = () => {
             const res = await axios.get(API);
             // console.log(res.data.search);
             console.log(res);
-             setData(res.data.search)     //storing the data
+            setData(res.data.search)     //storing the data
         } catch (error) {
+            console.log("This is Error Message");
             console.log(error);
+            console.log(error.response.status);
         }
     }
 
@@ -57,9 +60,10 @@ export const Movie = () => {
     }, [])
 
     return (<>
-        <ul>
-            {Data.map((curElem) =>{
-            return <Card key = {curElem.imdbID}  movieData={curElem}/>
+        <ul className="ontainer grid grid-four--cols">
+            {/* <h1>HELLO YADAV G</h1> */}
+            {Data.map((curElem) => {
+                return <Card key={curElem.imdbID} movieData={curElem} />
             })
             }
         </ul>
