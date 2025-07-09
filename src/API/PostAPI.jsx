@@ -9,4 +9,9 @@ const api = axios.create({ // creates instanse of axios
 export const GetPost =(() =>{
     return api.get("/posts")
 })
+
+export const DeletePost = (id) => {
+    return api.delete(`/posts/${id}`)
+}
+
 console.log(GetPost);

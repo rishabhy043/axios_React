@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { GetPost } from "../API/PostAPI";
+import { DeletePost, GetPost } from "../API/PostAPI";
+import "./posts.css"; // Import the external CSS file
 
 export const Posts = () => {
     const [data, setData] = useState([]);
@@ -12,24 +13,46 @@ export const Posts = () => {
     useEffect(() => {
         getPostData();
     }, [])
+
+    //Handle delete post
+    const handleDeletePost = async (id) => {
+        try {
+            const res = await DeletePost(id)
+            console.log(res);
+            if (res.status === 200) {
+                const newUpdatesPosts = data.filter((curPost) => {
+                    return curPost.id !== id;  //curID s na match hone walw deleted
+                })
+                setData(newUpdatesPosts);
+            }else{
+                console.log("failed to delet ethe post " + Response.status);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (<>
-        <div className="secction-post">
-            <ul>
-                {
-                    data.map((curElem) => {
-                        const { id, body, title } = curElem;
-                        return (
-                            <li key={id}>
-                                <p>Card ID : {id}</p>
-                                <p>Title : {title}</p>
-                                <p>About : {body}</p>
-                                <button>UPDATE</button>
-                                <button>DELETE</button>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
+        <div className="posts-container">
+            <h1 className="posts-heading">📚 Posts</h1>
+
+            <div className="card-grid">
+                {data.map((curElem) => {
+                    const { id, title, body } = curElem;
+                    return (
+                        <div key={id} className="card">
+                            <p className="card-id">Card ID: {id}</p>
+                            <h2 className="card-title">{title}</h2>
+                            <p className="card-body">{body}</p>
+
+                            <div className="card-buttons">
+                                <button className="btn update-btn">UPDATE</button>
+                                <button className="btn delete-btn" onClick={() => handleDeletePost(id)}>DELETE</button>
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
         </div>
     </>)
 }
