@@ -1,20 +1,11 @@
-import { GetPost } from "./API/PostAPI";
-import { useEffect } from "react";
+import { Posts } from "./ProjectCom.jsx/posts";
 
-const App = () =>{
-  console.log(GetPost());
-
-  const getPostData = async () =>{
-    const res = await GetPost();
-    console.log(res);
-  };
-
-  useEffect(() =>{
-    getPostData();
-  } ,[])
-
-  return(<>
-  <h1>Hello kse ho ?</h1></>)
+const App = () => {
+  return (<>
+    <>
+    <Posts></Posts>
+    </>
+  </>)
 }
 
 export default App;

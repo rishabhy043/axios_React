@@ -9,4 +9,4 @@ const api = axios.create({ // creates instanse of axios
 export const GetPost =(() =>{
     return api.get("/posts")
 })
-// console.log(GetPost);
+console.log(GetPost);
