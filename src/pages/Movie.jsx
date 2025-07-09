@@ -38,7 +38,7 @@ export const Movie = () => {
 export const Movie = () => {
     const [Data, setData] = useState([]);
 
-    const API = "https://www.omdbapi.com/?i=tt3896198&apiskey=1c12799f&s=titanic&page=1";
+    const API = "https://www.omdbapi.com/?i=tt3896198&apikey=1c12799f&s=titanic&page=1";
     //    const res = await axios.get(API);
     //    console.log(res);
 
@@ -47,7 +47,7 @@ export const Movie = () => {
             const res = await axios.get(API);
             // console.log(res.data.search);
             console.log(res);
-            setData(res.data.search)     //storing the data
+            setData(res.data.Search)     //storing the data
         } catch (error) {
             console.log("This is Error Message");
             console.log(error);
@@ -61,9 +61,9 @@ export const Movie = () => {
 
     return (<>
         <ul className="ontainer grid grid-four--cols">
-            {/* <h1>HELLO YADAV G</h1> */}
+            { <h1>HELLO YADAV G</h1> }
             {Data.map((curElem) => {
-                return <Card key={curElem.imdbID} movieData={curElem} />
+                return <Card key={curElem.imdbID} curMovie={curElem} />
             })
             }
         </ul>
