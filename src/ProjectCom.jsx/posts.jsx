@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { DeletePost, GetPost } from "../API/PostAPI";
+import { Form } from "./Form";
 import "./posts.css"; // Import the external CSS file
 
 export const Posts = () => {
@@ -15,6 +16,7 @@ export const Posts = () => {
     }, [])
 
     //Handle delete post
+    
     const handleDeletePost = async (id) => {
         try {
             const res = await DeletePost(id)
@@ -33,9 +35,13 @@ export const Posts = () => {
     }
 
     return (<>
+   
         <div className="posts-container">
+             
             <h1 className="posts-heading">📚 Posts</h1>
-
+            <section>
+             <Form data={setData} setData={setData}> <h1>Hello form</h1></Form>
+             </section>
             <div className="card-grid">
                 {data.map((curElem) => {
                     const { id, title, body } = curElem;
