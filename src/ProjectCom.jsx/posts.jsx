@@ -48,7 +48,7 @@ export const Posts = () => {
                     return (
                         <div key={id} className="card">
                             <p className="card-id">Card ID: {id}</p>
-                            <h2 className="card-title">{title}</h2>
+                            <h2 className="card-title">Title:{title}</h2>
                             <p className="card-body">{body}</p>
 
                             <div className="card-buttons">
