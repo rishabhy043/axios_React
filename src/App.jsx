@@ -1,10 +1,11 @@
 import { Posts } from "./ProjectCom.jsx/posts";
-import Rdx from "./Rdx/Rdx";
+import ReduxApp from "./Rdx/ReduxApp";
+
 
 const App = () => {
   return (<>
     <>
-    <Rdx></Rdx>
+    <ReduxApp/>
     </>
   </>)
 }
